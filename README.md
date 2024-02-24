@@ -8,7 +8,6 @@
 * Windows/LinuxでC++ファイルの作り方,呼び方が異なる.
 * numpy配列をポインタ型にしてC++関数に渡せるが,numpyの型指定必須.
 * .cppの関数は,"extern "C" __declspec(dllexport)"つけないとpythonから外部参照できない
-* ctypesポインタに変換した配列をnumpy配列にする方法はとりあえず,xrangeにした.
 * Image_processing.pyから実行
 
 #### DLLの作り方Tips

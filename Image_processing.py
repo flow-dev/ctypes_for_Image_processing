@@ -3,6 +3,7 @@
 
 import ctypes
 import numpy as np
+import os
 
 # Windows OS
 # Download <https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/rubenvb/gcc-4.8-release/>
@@ -13,8 +14,9 @@ import numpy as np
 # >>> x86_64-w64-mingw32-g++ -c Image_processing.cpp
 # >>> x86_64-w64-mingw32-g++ -shared -o Image_processing.dll Image_processing.o
 
-PATH = 'Image_processing.dll'
-lib = ctypes.windll.LoadLibrary(PATH)
+# Python3.3から下記処理を行わないとエラーを吐く https://qiita.com/NeoNuc2001/items/87f6135ef2c6515ea1b9
+os.add_dll_directory(os.getcwd())
+lib=ctypes.CDLL("Image_processing")
 
 # Linux OS
 # Build .so for linux System.
@@ -57,7 +59,7 @@ lib.Image_processing_pics(input_c, output, width, height)
 print (add_out)
 
 output_arr = np.array([])
-for i in xrange(width*height):
+for i in range(width * height):
     #print output[i]
     output_arr = np.append(output_arr, output[i])
 output_arr = output_arr.astype(np.uint8)
